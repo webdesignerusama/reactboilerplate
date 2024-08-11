@@ -1,31 +1,43 @@
-import { createSlice,nanoid } from "@reduxjs/toolkit";
-import { get } from '../lib/apiWrapper'
+// itemsSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+import { Get, Post } from '../lib/apiWrapper'; // Import your API utility functions
 
-const initialState={
-    list:[{id:1,text:'hello world'}]
-}
+const itemsSlice = createSlice({
+  name: 'items',
+  initialState: {
+    items: [],
+    status: 'idle',
+    error: null,
+  },
+  reducers: {
+    getItems: (state) => {
+      return new Promise((resolve, reject) => {
+        Get('/posts')
+          .then((res) => {
+            // state.items = res; 
+            resolve(res);
+          })
+          .catch((err) => {
+            // state.error = err.message; 
+            reject(err);
+          });
+      });
+    },
+    postItems: (state, action) => {
+      return new Promise((resolve, reject) => {
+        Post('/posts', action.payload)
+          .then((res) => {
+            state.items.push(res); // Add the new item to the state
+            resolve(res);
+          })
+          .catch((err) => {
+            state.error = err.message; // Store the error in the state
+            reject(err);
+          });
+      });
+    },
+  },
+});
 
-export const mainSlice= createSlice({
-    name:'Main',
-    initialState,
-    reducers:{
-        addTodo:(state,action)=>{
-              const todo={
-                id:nanoid(),
-                text:action.payload
-              }
-              console.log(get())
-              state.list.push(todo)
-        },
-        removeTodo:(state,action)=>{
-            state.list=   state.list.filter(item=> item.id !== action.payload)
-        },
-        updateTodo:(state,action)=>{
-           const itemToUpdate=  state.list.find(item=> item.id===action.payload.id)
-                    itemToUpdate.text= action.payload.text
-        }
-    }
-})
-
-export const {addTodo,removeTodo,updateTodo}=mainSlice.actions
-export default mainSlice.reducer
+export const { getItems, postItems } = itemsSlice.actions;
+export default itemsSlice.reducer;
