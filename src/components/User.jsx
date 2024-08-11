@@ -8,7 +8,11 @@ const User = () => {
     }, [parm])
     
   return (
-    <div> i am {parm.name}</div>
+    <div>
+    <div className="container">
+      <h5>Hello, This is User Page and this is a protected route. </h5>
+    </div>
+  </div>
   )
 }
 

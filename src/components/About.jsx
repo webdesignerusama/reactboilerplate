@@ -7,12 +7,11 @@ const About = () => {
     console.log('name changed', name)
   }
   return (
-    <>
-    <div>About</div>
-    <NavLink to="/">Home</NavLink>
-    <Child  message={"hi i am props"} onNameChange={changeName} />
-  
-    </>
+    <div>
+    <div className="container">
+      <h5>Hello, This is Login Page </h5>
+    </div>
+  </div>
   )
 }
 

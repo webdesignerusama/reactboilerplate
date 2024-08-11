@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import  { addTodo, removeTodo, updateTodo } from "../features/mainSlice"
 import { useSelector } from "react-redux"
@@ -27,27 +26,11 @@ const Home = () => {
     }))
   } 
   return (
-    <>
-    <div>About</div>
-    <NavLink to="/about">About</NavLink>
-
-    <form onSubmit={addToHandler}>
-  <input type="text" placeholder="enter to do" value={input} onChange={(e)=>setinput(e.target.value)}/>
-
-<button type="submit">add to do</button>
-    </form>
-
-    <ul>
-      {
-        todos.map((todo)=>
-      
-         <li key={todo.id}>{todo.text}  <button onClick={()=>deleteTodo(todo.id)}>delete</button> <button onClick={()=>updateTodos(todo.id)}>update</button>  </li>
-     
-       
-        )
-      }
-    </ul>
-    </>
+  <div>
+    <div className="container">
+      <h5>Hello, This is Home Page </h5>
+    </div>
+  </div>
   )  
 }
 

@@ -1,29 +1,13 @@
 
 import './App.css'
-import Home from './components/Home'
-import About from './components/About'
-import User from './components/User'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AppRouter from './router/router';
+import { BrowserRouter as Router } from 'react-router-dom'
 function App() {
-  const router = createBrowserRouter([
-         {
-            path:'/',
-            element:<Home/>
-         },
-         {
-          path:'/about',
-          element:<About />
-         }, {
-          path:'/user/:name',
-          element:<User />
-         }
-  ])
-  
   return (
-    <>
-     <RouterProvider router={router}/>
-    </>
-  )
+    <Router>
+      <AppRouter />
+    </Router>
+  );
 }
 
 export default App

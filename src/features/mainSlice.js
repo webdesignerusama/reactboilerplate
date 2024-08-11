@@ -1,4 +1,5 @@
 import { createSlice,nanoid } from "@reduxjs/toolkit";
+import { get } from '../lib/apiWrapper'
 
 const initialState={
     list:[{id:1,text:'hello world'}]
@@ -13,6 +14,7 @@ export const mainSlice= createSlice({
                 id:nanoid(),
                 text:action.payload
               }
+              console.log(get())
               state.list.push(todo)
         },
         removeTodo:(state,action)=>{
