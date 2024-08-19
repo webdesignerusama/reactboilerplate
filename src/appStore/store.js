@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from '../features/todo/todoSlice'
-import mainReducer from '../features/mainSlice'
+import todoReducer from './features/todo/todoSlice'
+import mainReducer from './features/mainSlice'
 const rootReducer = {
     todo: todoReducer,
     main: mainReducer

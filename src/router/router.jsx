@@ -1,12 +1,11 @@
 // src/Router.js
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from '../components/Home';
-import AboutPage from '../components/About';
-import UserPage from '../components/User';
+import LoginPage from '../Pages/LoginPageView';
+import UserPage from '../Pages/UserPageView';
+import AdminPage from '../Pages/AdminPageView';
 import ProtectedRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-
 const AppRouter = () => {
   return (
     <Routes>
@@ -15,7 +14,7 @@ const AppRouter = () => {
         path="/login"
         element={
           <PublicRoute>
-            <AboutPage />
+            <LoginPage />
           </PublicRoute>
         }
       />
@@ -24,6 +23,14 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <UserPage />
+          </ProtectedRoute>
+        }
+      />
+       <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminPage />
           </ProtectedRoute>
         }
       />
